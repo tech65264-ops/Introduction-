@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shamil | Matrix Intro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: radial-gradient(circle at top, #001a33 0%, #000814 45%, #000 100%);
+      color: #e0f2ff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* Canvas background */
+    #matrix {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: transparent;
+    }
+
+    /* Centered intro card */
+    .hero {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .card {
+      background: rgba(0, 20, 40, 0.82);
+      border: 1px solid rgba(0, 150, 255, 0.7);
+      box-shadow: 0 0 40px rgba(0, 150, 255, 0.35);
+      border-radius: 18px;
+      padding: 2rem 2.4rem;
+      max-width: 420px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(0, 200, 255, 0.2), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(0, 120, 255, 0.2), transparent 55%);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #7fd0ff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #19c3ff;
+      box-shadow: 0 0 12px rgba(0, 200, 255, 0.9);
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 2.6rem);
+      margin-bottom: 0.6rem;
+      color: #f5fbff;
+    }
+    h1 span {
+      color: #3cb7ff;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #a6c6ff;
+      margin-bottom: 1.4rem;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 1.25rem;
+      margin-bottom: 1.7rem;
+      font-size: 0.9rem;
+    }
+    .meta-label {
+      color: #7fa4ff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+    .meta-value {
+      color: #e8f3ff;
+    }
+
+    .glow-line {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, #27c2ff, transparent);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.78rem;
+      color: #92b5ff;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .footer-text span {
+      white-space: nowrap;
+    }
+
+    /* Scan animation on card */
+    .scan {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 190, 255, 0.22) 50%,
+        transparent 100%
+      );
+      mix-blend-mode: screen;
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.6rem 1.4rem;
+        border-radius: 14px;
+      }
+      .meta {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <main class="hero">
+    <section class="card">
+      <div class="scan"></div>
+      <div class="tag">
+        <span class="tag-dot"></span>
+        <span>System online</span>
+      </div>
+      <h1>Hey, <span>Shamil</span> here</h1>
+      <p class="subtitle">
+        17‑year‑old human running on caffeine, code and dreams, straight out of Kashmir.
+      </p>
+
+      <div class="meta">
+        <div>
+          <div class="meta-label">Name</div>
+          <div class="meta-value">Shamil</div>
+        </div>
+        <div>
+          <div class="meta-label">Age</div>
+          <div class="meta-value">17</div>
+        </div>
+        <div>
+          <div class="meta-label">Origin</div>
+          <div class="meta-value">Kashmir</div>
+        </div>
+        <div>
+          <div class="meta-label">Status</div>
+          <div class="meta-value">Learning · Coding · Leveling up</div>
+        </div>
+      </div>
+
+      <div class="glow-line"></div>
+
+      <div class="footer-text">
+        <span>&gt; welcome_to_blue_matrix()</span>
+        <span>press F11 for full screen</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Simple blue Matrix rain effect
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const letters = "01XYZ#@*/";
+    const fontSize = 18;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 6, 20, 0.32)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#35c5ff";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        // blue glow
+        ctx.shadowColor = "#009dff";
+        ctx.shadowBlur = 12;
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.95) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
